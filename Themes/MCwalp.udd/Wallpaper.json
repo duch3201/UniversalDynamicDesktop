@@ -10,18 +10,18 @@
        {
           "file":"2.png",
           "start":"noon",
-          "end":"SsunSet"
+          "end":"sunSet"
        }
     ],
     "Night":[
        {
           "file":"3.png",
-          "start":"SsunSet",
-          "end":"6:00"
+          "start":"sunSet",
+          "end":"night"
        },
        {
           "file":"4.png",
-          "start":"sunSet",
+          "start":"night",
           "end":"night"
        }
     ]
