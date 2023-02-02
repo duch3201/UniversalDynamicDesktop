@@ -13,9 +13,58 @@ from astral.sun import sun
 
 
 def get_sunrise_sunset(location_name):
+    import datetime
     location = LocationInfo(location_name)
     s = sun(location.observer, date=datetime.date.today())
-    return s['sunrise'], s['sunset']
+    sunrise = s['sunrise'].time()
+    sunset = s['sunset'].time()
+    return sunrise, sunset
+
+
+def get_milestone_time(milestone, sunrise, sunset):
+    if milestone == "sunRise":
+        return sunrise
+    elif milestone == "noon":
+        return datetime.time(12, 0, 0)
+    elif milestone == "sunSet":
+        return sunset
+    elif milestone == "night":
+        return datetime.time(23, 59, 59)
+    else:
+        raise ValueError("Invalid milestone")
+
+
+
+def Darwin():
+    import datetime
+    import AppKit 
+    from AppKit import NSWorkspace, NSURL, NSScreen
+
+    os.chdir("Themes/MCwalp.pdd")
+    with open("Walpaper.json", "r") as f:
+        themejson = json.load(f)
+    
+    sunrise, sunset = get_sunrise_sunset("your_location")
+    current_time = datetime.datetime.now().time()
+    if current_time > sunrise and current_time < sunset:
+        # Daytime
+        path = os.getcwd()+"/images/"+themejson["Day"][0]
+        workspace = NSWorkspace.sharedWorkspace()
+        image_url = NSURL.fileURLWithPath_(path)
+        options = {}
+        screen = NSScreen.mainScreen()
+        workspace.setDesktopImageURL_forScreen_options_error_(image_url, screen, options, None)
+    else:
+        # Nighttime
+        path = os.getcwd()+"/images/"+themejson["Night"][0]
+        workspace = NSWorkspace.sharedWorkspace()
+        image_url = NSURL.fileURLWithPath_(path)
+        options = {}
+        screen = NSScreen.mainScreen()
+        workspace.setDesktopImageURL_forScreen_options_error_(image_url, screen, options, None)
+
+
+
 
 
 def Windowswalp():
@@ -50,17 +99,19 @@ def Windowswalp():
 
 def main():
 
-    timezone = pytz.timezone(pytz.country_timezones['in'][0])
-    location_name = timezone._tzname
-    sunrise, sunset = get_sunrise_sunset(location_name)
+    #timezone = pytz.timezone(pytz.country_timezones['in'][0])
+    #location_name = timezone._tzname
+    #sunrise, sunset = get_sunrise_sunset(location_name)
 
-    print(f"Sunrise: {sunrise}")
-    print(f"Sunset: {sunset}")
+    #print(f"Sunrise: {sunrise}")
+    #print(f"Sunset: {sunset}")
 
-    sys.exit()
+    
 
     os_name = platform.system()
-    #print(os_name)
+    print(os_name)
+
+    #sys.exit()
 
     if os_name == "Windows":
         #print("hetet")
@@ -68,6 +119,8 @@ def main():
         Windowswalp()
     elif os_name == "Linux":
         print("sorry, Linux is not supported yet!")
+    elif os_name == "Darwin":
+        Darwin()
 
 
-print(utils.discovery())
+main()

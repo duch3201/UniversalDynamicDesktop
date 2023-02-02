@@ -1,0 +1,28 @@
+{
+    "name":"Wallpaper Collection",
+    "desc":"walpaper description",
+    "Day":[
+       {
+          "file":"1.png",
+          "start":"sunRise",
+          "end":"noon"
+       },
+       {
+          "file":"2.png",
+          "start":"noon",
+          "end":"SsunSet"
+       }
+    ],
+    "Night":[
+       {
+          "file":"3.png",
+          "start":"SsunSet",
+          "end":"6:00"
+       },
+       {
+          "file":"4.png",
+          "start":"sunSet",
+          "end":"night"
+       }
+    ]
+ }
