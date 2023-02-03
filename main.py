@@ -7,6 +7,7 @@ import sys
 import time
 import utils
 import menu
+import menu
 import pytz
 from astral.location import LocationInfo
 from astral.sun import sun
@@ -77,14 +78,20 @@ def Darwin():
         img = jsonTheme["Day"][0]["file"]
         if Wallpaper_info == True:
             img = utils.add_text(Info_position, img)
+        if Wallpaper_info == True:
+            img = utils.add_text(Info_position, img)
     elif sunrise.time() <= current_time < sunset.time():
         print("day")
         img = jsonTheme["Day"][1]["file"]
         if Wallpaper_info == True:
             img = utils.add_text(Info_position, img)     
+        if Wallpaper_info == True:
+            img = utils.add_text(Info_position, img)     
     elif sunset.time() <= current_time < dusk.time():
         img = jsonTheme["Night"][0]["file"]
         print("sunset")
+        if Wallpaper_info == True:
+            img = utils.add_text(Info_position, img)
         if Wallpaper_info == True:
             img = utils.add_text(Info_position, img)
     else:
@@ -93,6 +100,8 @@ def Darwin():
         if Wallpaper_info == True:
             img = utils.add_text(Info_position, img) 
 
+        if Wallpaper_info == True:
+            img = utils.add_text(Info_position, img) 
         
     path_to_image = path + "/images/" + str(img)
     path = NSURL.fileURLWithPath_(path_to_image)
@@ -101,7 +110,7 @@ def Darwin():
     workspace.setDesktopImageURL_forScreen_options_error_(path, screen[0], {}, None)
 
     #print("\n\n dawn", dawn, "\n\n noon", noon, "\n\n sunset", sunset, "\n\n dusk", dusk, "\n\n current time", current_time, "\n\n img", img, "\n\n path", path_to_image )
-
+    print("\n\n Wallpaper_info", Wallpaper_info, "\n\n Wallpaper_interval",Wallpaper_interval, "\n\n Info_position", Info_position, "\n\n City",City, "\n\n Country",Country)
 
 
 def Windowswalp():
@@ -139,6 +148,8 @@ def main():
     os_name = platform.system()
 
     Refresh_interval = utils.get_settings("Wallpaper_interval")
+    Refresh_interval = utils.get_settings("Wallpaper_interval")
+
 
     if os_name == "Windows":
         utils.discovery()
@@ -147,8 +158,11 @@ def main():
         print("sorry, Linux is not supported yet!")
     elif os_name == "Darwin":
         utils.discovery()
+        menu.menu()
         while True:
             Darwin()
+            print(Refresh_interval)
+            time.sleep(Refresh_interval)
             print(Refresh_interval)
             time.sleep(Refresh_interval)
 
