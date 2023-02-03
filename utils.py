@@ -23,6 +23,12 @@ def GetSelectedWallpaper():
 def CheckTime(time):
     pass
 
+def FirstRun():
+    os.mkdir("Themes")
+
+def init():
+    pass
+
 def get_milestones():
     from astral.sun import sun
     from astral.location import LocationInfo
@@ -49,8 +55,11 @@ def discovery():
         if filename.endswith(".udd"):
             directories.append(filename)
     
-    with open('./Themes/Themes.json', 'r') as json_file:
-        data = json.load(json_file)
+    try:
+        with open('./Themes/Themes.json', 'r') as json_file:
+            data = json.load(json_file)
+    except FileNotFoundError:
+        open('./Themes/Themes.json')
 
     for directory in directories:
         theme_found = False

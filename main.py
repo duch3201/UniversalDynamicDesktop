@@ -89,7 +89,7 @@ def Darwin():
     screen = NSScreen.screens()
     workspace.setDesktopImageURL_forScreen_options_error_(path, screen[0], {}, None)
 
-    print("\n\n dawn", dawn, "\n\n noon", noon, "\n\n sunset", sunset, "\n\n dusk", dusk, "\n\n current time", current_time, "\n\n img", img, "\n\n path", path_to_image )
+    #print("\n\n dawn", dawn, "\n\n noon", noon, "\n\n sunset", sunset, "\n\n dusk", dusk, "\n\n current time", current_time, "\n\n img", img, "\n\n path", path_to_image )
 
 
 
@@ -128,11 +128,14 @@ def main():
     os_name = platform.system()
 
     if os_name == "Windows":
+        utils.discovery()
         Windowswalp()
     elif os_name == "Linux":
         print("sorry, Linux is not supported yet!")
     elif os_name == "Darwin":
-        Darwin()
-
+        utils.discovery()
+        while True:
+            Darwin()
+            time.sleep(5)
 
 main()
