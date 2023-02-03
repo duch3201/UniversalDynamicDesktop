@@ -1,28 +1,24 @@
 {
-    "name":"Wallpaper Collection",
-    "desc":"walpaper description",
+    "name":"MC Wallpaper",
+    "desc":"Just a wallpaper pack from minecraft",
     "Day":[
        {
           "file":"1.png",
-          "start":"sunRise",
-          "end":"noon"
+          "tag":"dawn"
        },
        {
           "file":"2.png",
-          "start":"noon",
-          "end":"sunSet"
+          "tag":"day"
        }
     ],
     "Night":[
        {
           "file":"3.png",
-          "start":"sunSet",
-          "end":"night"
+          "tag":"sunset"
        },
        {
           "file":"4.png",
-          "start":"night",
-          "end":"night"
+          "tag":"night"
        }
     ]
  }

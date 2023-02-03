@@ -1,6 +1,7 @@
 import json
 import os
 from AppKit import NSScreen, NSWindow, NSWorkspace, NSURL
+import datetime
 
 def set_wallpaper(image_path):
     workspace = NSWorkspace.sharedWorkspace()
@@ -19,9 +20,26 @@ def GetSelectedWallpaper():
         return "Could not find Themes.json"
     return selected
 
+def CheckTime(time):
+    pass
 
+def get_milestones():
+    from astral.sun import sun
+    from astral.location import LocationInfo
+    from datetime import datetime, time
 
+    city = LocationInfo("Bydgoszcz", "Poland")
+    s = sun(city.observer, date=datetime.now())
+    dawn = s['dawn']
+    sunrise = s['sunrise']
+    sunset = s['sunset']
+    dusk = s['dusk']
 
+    return dawn, sunrise, sunset, dusk
+
+def get_current_time():
+    now = datetime.datetime.now().time()
+    return now
 
 def discovery():
     path = os.getcwd() + "/Themes"
