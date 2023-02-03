@@ -1,0 +1,33 @@
+{
+   "name":"MC Wallpaper",
+    "desc":"Just a wallpaper pack from minecraft",
+    "Day":[
+       {
+          "file":"1.png",
+          "tag":"dawn",
+          "title":"Minecraft canyon - In the morning",
+          "desc":"Photo by krzysztof"
+       },
+       {
+          "file":"2.png",
+          "tag":"day",
+          "title":"Minecraft canyon - At noon",
+          "desc":"Photo by krzysztof"
+       }
+    ],
+    "Night":[
+       {
+          "id":3,               
+          "file":"3.png",
+          "tag":"sunset",
+          "title":"Minecraft canyon - At sun set",
+          "desc":"Photo by krzysztof"
+       },
+       {
+          "file":"4.png",
+          "tag":"night",
+          "title":"Minecraft canyon - At night",
+          "desc":"Photo by krzysztof"
+       }
+    ]
+ }
