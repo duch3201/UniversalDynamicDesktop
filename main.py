@@ -1,10 +1,12 @@
+import datetime
+from datetime import datetime
 import json
 import os
 import platform
 import sys
 import time
 import utils
-import menu
+
 import pytz
 from astral.location import LocationInfo
 from astral.sun import sun
@@ -58,16 +60,12 @@ def Darwin():
     current_time = now.strftime("%H:%M")
     #print(current_time)
 
-    Wallpaper_info, Wallpaper_interval, Info_position, City, Country = utils.get_settings("null")
+    
 
     SelectedWalp = utils.GetSelectedWallpaper()
     path = os.getcwd() + "/Themes/" + SelectedWalp
     with open(path + "/Wallpaper.json") as f:
         jsonTheme = json.load(f)
-
-
-
-
 
     dawn, sunrise, sunset, dusk = utils.get_milestones()
     current_time = utils.get_current_time()
@@ -75,23 +73,15 @@ def Darwin():
     if dawn.time() <= current_time < sunrise.time():
         print("dawn")
         img = jsonTheme["Day"][0]["file"]
-        if Wallpaper_info == True:
-            img = utils.add_text(Info_position, img)
     elif sunrise.time() <= current_time < sunset.time():
         print("day")
         img = jsonTheme["Day"][1]["file"]
-        if Wallpaper_info == True:
-            img = utils.add_text(Info_position, img)     
     elif sunset.time() <= current_time < dusk.time():
         img = jsonTheme["Night"][0]["file"]
         print("sunset")
-        if Wallpaper_info == True:
-            img = utils.add_text(Info_position, img)
     else:
         img = jsonTheme["Night"][1]["file"]
         print("night")
-        if Wallpaper_info == True:
-            img = utils.add_text(Info_position, img) 
         
     path_to_image = path + "/images/" + str(img)
     path = NSURL.fileURLWithPath_(path_to_image)
@@ -100,7 +90,6 @@ def Darwin():
     workspace.setDesktopImageURL_forScreen_options_error_(path, screen[0], {}, None)
 
     #print("\n\n dawn", dawn, "\n\n noon", noon, "\n\n sunset", sunset, "\n\n dusk", dusk, "\n\n current time", current_time, "\n\n img", img, "\n\n path", path_to_image )
-    print("\n\n Wallpaper_info", Wallpaper_info, "\n\n Wallpaper_interval",Wallpaper_interval, "\n\n Info_position", Info_position, "\n\n City",City, "\n\n Country",Country)
 
 
 
@@ -134,12 +123,9 @@ def Windowswalp():
     ctypes.windll.user32.SystemParametersInfoW(20, 0, path_to_image , 0)
 
 
-
-
 def main():
 
     os_name = platform.system()
-    Refresh_interval = utils.get_settings("Wallpaper_interval")
 
     if os_name == "Windows":
         utils.discovery()
@@ -148,11 +134,8 @@ def main():
         print("sorry, Linux is not supported yet!")
     elif os_name == "Darwin":
         utils.discovery()
-        menu.menu()
         while True:
-
             Darwin()
-            print(Refresh_interval)
-            time.sleep(Refresh_interval)
+            time.sleep(5)
 
 main()

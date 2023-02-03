@@ -3,30 +3,22 @@
     "desc":"Just a wallpaper pack from minecraft",
     "Day":[
        {
-          "id":1,
           "file":"1.png",
-          "title":"Minecraft canyon - In the morning",
-          "desc":"Photo by krzysztof"
+          "tag":"dawn"
        },
        {
-          "id":2,
           "file":"2.png",
-          "title":"Minecraft canyon - At noon",
-          "desc":"Photo by krzysztof"
+          "tag":"day"
        }
     ],
     "Night":[
        {
-          "id":3,         
           "file":"3.png",
-          "title":"Minecraft canyon - At sun set",
-          "desc":"Photo by krzysztof"
+          "tag":"sunset"
        },
        {
-          "id":4,
           "file":"4.png",
-          "title":"Minecraft canyon - At night",
-          "desc":"Photo by krzysztof"
+          "tag":"night"
        }
     ]
  }
