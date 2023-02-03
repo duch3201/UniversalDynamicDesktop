@@ -6,7 +6,7 @@ import platform
 import sys
 import time
 import utils
-
+import menu
 import pytz
 from astral.location import LocationInfo
 from astral.sun import sun
@@ -60,6 +60,8 @@ def Darwin():
     current_time = now.strftime("%H:%M")
     #print(current_time)
 
+    Wallpaper_info, Wallpaper_interval, Info_position, City, Country = utils.get_settings("null")
+
     
 
     SelectedWalp = utils.GetSelectedWallpaper()
@@ -73,15 +75,24 @@ def Darwin():
     if dawn.time() <= current_time < sunrise.time():
         print("dawn")
         img = jsonTheme["Day"][0]["file"]
+        if Wallpaper_info == True:
+            img = utils.add_text(Info_position, img)
     elif sunrise.time() <= current_time < sunset.time():
         print("day")
         img = jsonTheme["Day"][1]["file"]
+        if Wallpaper_info == True:
+            img = utils.add_text(Info_position, img)     
     elif sunset.time() <= current_time < dusk.time():
         img = jsonTheme["Night"][0]["file"]
         print("sunset")
+        if Wallpaper_info == True:
+            img = utils.add_text(Info_position, img)
     else:
         img = jsonTheme["Night"][1]["file"]
         print("night")
+        if Wallpaper_info == True:
+            img = utils.add_text(Info_position, img) 
+
         
     path_to_image = path + "/images/" + str(img)
     path = NSURL.fileURLWithPath_(path_to_image)
@@ -127,6 +138,8 @@ def main():
 
     os_name = platform.system()
 
+    Refresh_interval = utils.get_settings("Wallpaper_interval")
+
     if os_name == "Windows":
         utils.discovery()
         Windowswalp()
@@ -136,6 +149,7 @@ def main():
         utils.discovery()
         while True:
             Darwin()
-            time.sleep(5)
+            print(Refresh_interval)
+            time.sleep(Refresh_interval)
 
 main()
