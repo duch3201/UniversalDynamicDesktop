@@ -12,17 +12,14 @@ UDD is a cross-platform dynamic desktop wallpaper application written in Python.
 this app is in early development, **EXPECT BUGS**
 
 ## OS support
----
 Right now UDD only supports MacOS, the plans are to support all platforms such as Linux and windows
 
 
 ## User settings
----
 TBD
 
 
 ## Creating a new Theme
----
 To create a new theme for UDD, create a directory with the following structure:
 
 ```
